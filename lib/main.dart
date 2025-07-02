@@ -22,7 +22,7 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Consultar Débitos',
+      title: 'Totem de Autoatendimento',
       initialRoute: '/',
       routes: {
         '/': (context) => HomePage(),
