@@ -100,7 +100,21 @@ class HomePage extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                const Divider(color: Colors.black54),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 40), // espaço lateral
+                  child: Container(
+                    width: double.infinity,
+                    height: 15,
+                    margin: const EdgeInsets.only(top: 8, bottom: 8),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).brightness == Brightness.dark
+                          ? Colors.black
+                          : Theme.of(context).primaryColor,
+                      borderRadius: BorderRadius.circular(999),
+                    ),
+                  ),
+                ),
+                SizedBox(height: 20),
                 Center(
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
