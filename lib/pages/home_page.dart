@@ -101,7 +101,9 @@ class HomePage extends StatelessWidget {
                 ),
                 const Spacer(),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 40), // espaço lateral
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 30,
+                  ), // espaço lateral
                   child: Container(
                     width: double.infinity,
                     height: 15,
@@ -109,7 +111,7 @@ class HomePage extends StatelessWidget {
                     decoration: BoxDecoration(
                       color: Theme.of(context).brightness == Brightness.dark
                           ? Colors.black
-                          : Theme.of(context).primaryColor,
+                          : const Color(0xFF032A28),
                       borderRadius: BorderRadius.circular(999),
                     ),
                   ),
