@@ -13,7 +13,7 @@ import 'pages/consultar_pontuacao_cnh/dados.dart';
 import 'pages/consultar_pontuacao_cnh/acoes.dart';
 import 'pages/consultar_pontuacao_cnh/qr_code.dart';
 import 'pages/consultar_pontuacao_cnh/enviar.dart';
-
+import 'pages/encerrar.dart';
 void main() {
   runApp(App());
 }
@@ -45,6 +45,8 @@ class App extends StatelessWidget {
         '/consultar-pontuacao-cnh/acoes': (context) => CNHAcoesPage(),
         '/consultar-pontuacao-cnh/qr-code': (context) => CNHQRcodePage(),
         '/consultar-pontuacao-cnh/enviar': (context) => CNHEnviarPage(),
+
+        '/encerrar': (context)=>EncerrarPage(),
       },
     );
   }

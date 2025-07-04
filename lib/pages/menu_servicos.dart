@@ -23,6 +23,30 @@ class MenuServicosPage extends StatelessWidget {
               '/consultar-pontuacao-cnh/preenchimento',
             ),
           ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            child: Text('Multas'),
+            onPressed: () => Navigator.pushNamed(
+              context,
+              '#',
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            child: Text('Agendamento de Cabine'),
+            onPressed: () => Navigator.pushNamed(
+              context,
+              '#',
+            ),
+          ),
+          SizedBox(height: 20),
+          ElevatedButton(
+            child: Text('Sair'),
+            onPressed: () => Navigator.pushNamed(
+              context,
+              '/encerrar',
+            ),
+          ),
         ],
       ),
     ),
