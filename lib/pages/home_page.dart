@@ -1,7 +1,13 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+  final bool highlighted;
+
+  const HomePage({
+    super.key,
+    this.highlighted = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -9,7 +15,7 @@ class HomePage extends StatelessWidget {
       backgroundColor: const Color(0xFFE5F9F7),
       body: Stack(
         children: [
-          // Imagem de fundo (top-left)
+          // Imagens de fundo posicionadas no Stack fora do Expanded
           Positioned(
             top: 0,
             left: 0,
@@ -20,8 +26,6 @@ class HomePage extends StatelessWidget {
               fit: BoxFit.contain,
             ),
           ),
-
-          // Imagem de fundo (bottom-right)
           Positioned(
             bottom: -130,
             right: 0,
@@ -33,136 +37,198 @@ class HomePage extends StatelessWidget {
             ),
           ),
 
-          // Conteúdo principal
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                const Spacer(),
-                const Text(
-                  'Totem de\nAutoatendimento',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.black87,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                Container(
-                  padding: const EdgeInsets.all(24),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF3DD8CC),
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(20),
-                      topRight: Radius.circular(20),
-                      bottomLeft: Radius.circular(20),
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 8,
-                        offset: Offset(2, 4),
-                      ),
-                    ],
-                  ),
+          // Conteúdo principal + rodapé, organizados em Column que fica dentro do Stack
+          Column(
+            children: [
+              // Conteúdo principal que ocupa o máximo do espaço
+              Expanded(                
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 40),
                   child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset('assets/images/logo_inovati.png', height: 80),
-                      const SizedBox(height: 16),
-                      const Text(
-                        'TECNOLOGIA',
-                        style: TextStyle(fontSize: 18, color: Colors.black87),
+                      SizedBox(height: 300),
+                       Align(
+                          alignment: Alignment.topCenter, // Centraliza a "div" de 980 na tela
+                          child: SizedBox(
+                            width: 980, // Largura fixa
+                            child: Padding(
+                              padding: const EdgeInsets.only(left: 430), // 50% vazio à esquerda
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start, // Alinha o texto normalmente
+                                children: const [
+                                  Text(
+                                    'Totem de',
+                                    style: TextStyle(
+                                      fontSize: 45,
+                                      fontWeight: FontWeight.normal,
+                                      color: Color(0xFF032A28),
+                                      height: 1.0, // Altura da linha menor
+                                    ),
+                                  ),
+                                  Text(
+                                    'Autoatendimento',
+                                    style: TextStyle(
+                                      fontSize: 70,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color(0xFF032A28),
+                                      height: 1.0, // Ainda mais compacto
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      SizedBox(height: 25),
+                      // Container com imagem e botão flutuante
+                      Center(
+                        child: Container(
+                          width: 980,
+                          child: Stack(
+                            clipBehavior: Clip.none,
+                            children: [
+                              // Imagem principal
+                              Opacity(
+                                opacity: 0.98,
+                                child: Image.asset(
+                                  'assets/images/logo-home.png',
+                                  width: 980,
+                                  height: 635,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                              // Botão flutuante na base direita
+                              Positioned(
+                                bottom: -40,
+                                right: 0,
+                                child: SizedBox(
+                                  width: 373,
+                                  height: 148,
+                                  child: Stack(
+                                    alignment: Alignment.center,
+                                    children: [
+                                      if (highlighted)
+                                        Container(
+                                          decoration: BoxDecoration(
+                                            color: Colors.yellow.withOpacity(0.4),
+                                            borderRadius: BorderRadius.circular(30),
+                                          ),
+                                          child: BackdropFilter(
+                                            filter: ImageFilter.blur(
+                                              sigmaX: 20,
+                                              sigmaY: 20,
+                                            ),
+                                            child: const SizedBox.expand(),
+                                          ),
+                                        ),
+                                      ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.pushNamed(context, '/menu-servicos');
+                                        },
+                                        style: ElevatedButton.styleFrom(
+                                          padding: EdgeInsets.zero,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius: BorderRadius.circular(50),
+                                          ),
+                                          elevation: 4,
+                                          backgroundColor: Colors.transparent,
+                                        ).copyWith(
+                                          shadowColor:
+                                              MaterialStateProperty.all(Colors.transparent),
+                                        ),
+                                        child: Ink(
+                                          decoration: BoxDecoration(
+                                            gradient: const RadialGradient(
+                                              colors: [
+                                                Color(0xFF032A28),
+                                                Color(0xFF10413F),
+                                              ],
+                                              center: Alignment.center,
+                                              radius: 1,
+                                            ),
+                                            borderRadius: BorderRadius.circular(50),
+                                          ),
+                                          child: Container(
+                                            width: 373,
+                                            height: 148,
+                                            padding: const EdgeInsets.fromLTRB(44, 28, 44, 28),
+                                            child: Row(
+                                              mainAxisAlignment: MainAxisAlignment.center,
+                                              children: const [
+                                                Text(
+                                                  'Acessar',
+                                                  style: TextStyle(
+                                                    fontSize: 50,
+                                                    fontWeight: FontWeight.w600,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                                SizedBox(width: 20),
+                                                Icon(
+                                                  Icons.arrow_forward,
+                                                  size: 40,
+                                                  color: Colors.white,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
                     ],
                   ),
                 ),
-                const SizedBox(height: 16),
-                Align(
-                  alignment: Alignment.centerRight,
-                  child: ElevatedButton.icon(
-                    onPressed: () =>
-                        Navigator.pushNamed(context, '/menu-servicos'),
-                    icon: const Icon(Icons.arrow_forward),
-                    label: const Text('Acessar'),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: Colors.black,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 24,
-                        vertical: 16,
-                      ),
-                    ),
-                  ),
-                ),
-                const Spacer(),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 30,
-                  ), // espaço lateral
-                  child: Container(
-                    width: double.infinity,
-                    height: 15,
-                    margin: const EdgeInsets.only(top: 8, bottom: 8),
+              ),
+
+              // Separador do rodapé
+              const Padding(
+                padding: EdgeInsets.symmetric(horizontal: 30),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 15,
+                  child: DecoratedBox(
                     decoration: BoxDecoration(
-                      color: Theme.of(context).brightness == Brightness.dark
-                          ? Colors.black
-                          : const Color(0xFF032A28),
-                      borderRadius: BorderRadius.circular(999),
+                      color: Color(0xFF032A28),
+                      borderRadius: BorderRadius.all(Radius.circular(999)),
                     ),
                   ),
                 ),
-                SizedBox(height: 20),
-                Center(
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.asset(
-                        'assets/images/inovvati-logo-rodape.png',
-                        height: 24,
-                      ),
-                      const SizedBox(width: 8),
-                      const Text(
-                        '© 2025 Inovati - Todos os direitos reservados',
-                        style: TextStyle(fontSize: 12),
-                      ),
-                    ],
-                  ),
+              ),
+
+              const SizedBox(height: 20),
+
+              // Rodapé fixo
+              Center(
+                child: Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Image.asset(
+                      'assets/images/inovvati-logo-rodape.png',
+                      height: 24,
+                    ),
+                    const SizedBox(width: 8),
+                    const Text(
+                      '© 2025 Inovati - Todos os direitos reservados',
+                      style: TextStyle(fontSize: 12),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+
+              const SizedBox(height: 20),
+            ],
           ),
         ],
       ),
     );
+
   }
-}
-
-class BackgroundPainter extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.teal.shade900.withOpacity(0.2)
-      ..strokeWidth = 12
-      ..style = PaintingStyle.stroke;
-
-    final path = Path();
-    path.moveTo(0, size.height * 0.2);
-    path.lineTo(size.width * 0.4, 0);
-
-    path.moveTo(0, size.height * 0.3);
-    path.lineTo(size.width * 0.6, 0);
-
-    path.moveTo(0, size.height * 0.4);
-    path.lineTo(size.width * 0.8, 0);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(CustomPainter oldDelegate) => false;
 }
