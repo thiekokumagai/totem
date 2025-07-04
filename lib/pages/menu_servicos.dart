@@ -10,6 +10,9 @@ class MenuServicosPage extends StatelessWidget {
     appBar: AppBar(title: const Text('Menu de Serviços')),
     body: Stack(
       children: [
+        Positioned.fill(
+          child: Image.asset('assets/images/background.png', fit: BoxFit.cover),
+        ),
         const Header(),
         Column(
           children: [
@@ -34,10 +37,10 @@ class MenuServicosPage extends StatelessWidget {
                         );
                       },
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 60),
                     CardLink(
                       label: 'Consultar Pontuação CNH',
-                      icon: FontAwesomeIcons.fileInvoice,
+                      icon: FontAwesomeIcons.car,
                       highlighted: true,
                       onTap: () {
                         Navigator.pushNamed(
@@ -46,19 +49,19 @@ class MenuServicosPage extends StatelessWidget {
                         );
                       },
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 60),
                     CardLink(
                       label: 'Multas',
-                      icon: FontAwesomeIcons.fileInvoice,
+                      icon: FontAwesomeIcons.bookBookmark,
                       highlighted: true,
                       onTap: () {
                         Navigator.pushNamed(context, '#');
                       },
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 60),
                     CardLink(
                       label: 'Agendamento de Cabine',
-                      icon: FontAwesomeIcons.fileInvoice,
+                      icon: FontAwesomeIcons.calendarCheck,
                       highlighted: true,
                       onTap: () {
                         Navigator.pushNamed(context, '#');

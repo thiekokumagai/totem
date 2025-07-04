@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
 class Footer extends StatelessWidget {
   const Footer({super.key});
 
@@ -30,10 +31,7 @@ class Footer extends StatelessWidget {
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              SvgPicture.asset(
-                'assets/images/inovvati-logo.svg',
-                height: 24,
-              ),
+              SvgPicture.asset('assets/images/inovvati-logo.svg', height: 24),
               const SizedBox(width: 8),
               const Text(
                 '© 2025 Inovati - Todos os direitos reservados',
@@ -42,8 +40,6 @@ class Footer extends StatelessWidget {
             ],
           ),
         ),
-
-        const SizedBox(height: 20),
       ],
     );
   }

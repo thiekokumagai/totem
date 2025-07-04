@@ -34,13 +34,15 @@ class CardLink extends StatelessWidget {
           borderRadius: BorderRadius.circular(50),
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 32, horizontal: 24),
+            padding: const EdgeInsets.only(
+              left: 70,
+              right: 35,
+              top: 32,
+              bottom: 32,
+            ),
             decoration: BoxDecoration(
               gradient: const RadialGradient(
-                colors: [
-                  Color(0xFF032A28),
-                  Color(0xFF10413F),
-                ],
+                colors: [Color(0xFF29A495), Color(0xFF54D5C6)],
                 center: Alignment.center,
                 radius: 1,
               ),
@@ -56,13 +58,9 @@ class CardLink extends StatelessWidget {
                       width: 80,
                       height: 89,
                       alignment: Alignment.center,
-                      child: Icon(
-                        icon,
-                        size: 48,
-                        color: Colors.white,
-                      ),
+                      child: Icon(icon, size: 80, color: Color(0xFF10413F)),
                     ),
-                    const SizedBox(width: 16),
+                    const SizedBox(width: 30),
                     Text(
                       label,
                       style: const TextStyle(
@@ -79,10 +77,7 @@ class CardLink extends StatelessWidget {
                   height: 64,
                   decoration: const BoxDecoration(
                     gradient: RadialGradient(
-                      colors: [
-                        Color(0xFF0C5A50),
-                        Color(0xFF10413F),
-                      ],
+                      colors: [Color(0xFF032A28), Color(0xFF10413F)],
                       center: Alignment.center,
                       radius: 1,
                     ),
